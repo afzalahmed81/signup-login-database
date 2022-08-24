@@ -1,0 +1,27 @@
+{
+  "name": "signup-login-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afzalahmed81/signup-login-database.git"
+  },
+  "author": "Afzal Ahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/afzalahmed81/signup-login-database/issues"
+  },
+  "homepage": "https://github.com/afzalahmed81/signup-login-database#readme",
+  "dependencies": {
+    "bcrypt-inzi": "^1.0.7",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2",
+    "nanoid": "^4.0.0"
+  }
+}
