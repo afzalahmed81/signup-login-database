@@ -114,34 +114,76 @@ app.get("/users", async (req, res) => {
 
 //Login Database
 
+// app.post("/login", (req, res) => {
+
+//     userModel.findOne({ email: body.email, password: body.password }, (err, data) => {
+
+
+//         let body = req.body;
+
+//         if (!body.email || !body.password) {
+//             res.status(400).send(
+//                 `Required fields missing, Request example:
+//     {
+//         "email": "abc@abc.com",
+//         "password": "12345"
+//     }`
+//             );
+//             return;
+//         }
+//         if (userModel.email === body.email) {
+//             if (userModel.password === body.password) {
+//                 res.status(200).send({
+//                     firstName: userModel.firstName,
+//                     lastName: userModel.lastName,
+//                     email: userModel.email,
+//                     message: "login successful"
+//                 })
+//                 return;
+
+//             } else {
+
+//                 res.status(401).send({
+//                     message: "incorrect password"
+//                 })
+//                 return;
+//             }
+//         }
+//     });
+// });
 app.post("/login", (req, res) => {
 
-    userModel.findOne({ email: body.email, password: body.password }, (err, data) => {
+    let body = req.body;
 
+    if (!body.email || !body.password) { // null check - undefined, "", 0 , false, null , NaN
+        res.status(400).send(
+            `required fields missing, request example: 
+                {
+                    "email": "abc@abc.com",
+                    "password": "12345"
+                }`
+        );
+        return;
+    }
 
-        let body = req.body;
+    let isFound = false; // https://stackoverflow.com/a/17402180/4378475
 
-        if (!body.email || !body.password) {
-            res.status(400).send(
-                `Required fields missing, Request example:
-    {
-        "email": "abc@abc.com",
-        "password": "12345"
-    }`
-            );
-            return;
-        }
-        if (userModel.email === body.email) {
-            if (userModel.password === body.password) {
+    for (let i = 0; i < userModel.length; i++) {
+        if (userModel[i].email === body.email) {
+
+            isFound = true;
+            if (userModel[i].password === body.password) { // correct password
+
                 res.status(200).send({
-                    firstName: userModel.firstName,
-                    lastName: userModel.lastName,
-                    email: userModel.email,
-                    message: "login successful"
+                    firstName: userModel[i].firstName,
+                    lastName: userModel[i].lastName,
+                    email: userModel[i].email,
+                    message: "login successful",
+                    token: "some unique token"
                 })
                 return;
 
-            } else {
+            } else { // password incorrect
 
                 res.status(401).send({
                     message: "incorrect password"
@@ -149,9 +191,15 @@ app.post("/login", (req, res) => {
                 return;
             }
         }
-    });
-});
+    }
 
+    if (!isFound) {
+        res.status(404).send({
+            message: "user not found"
+        })
+        return;
+    }
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
