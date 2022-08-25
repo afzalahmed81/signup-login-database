@@ -7,14 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            background-color: cornflowerblue;
+        }
+        .container {
+            border: 1px solid black;
+            background-color: darkolivegreen;
+            border-radius: 20px;
+            width: 50%;
+            height: auto;
+            margin: auto;
+            padding-left: 20px;
+            /* display: flex; */
+        }
+        form {
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: darkgray;
+            width: 60%;
+            height: 200px;
+            padding: 20px;
+            margin: auto;
+        }
+        form>input {
+            margin: 5px;
+        }
+
+        .container h1 {
+            text-align: center;
+        }
+        #sgn-up {
+            margin:20px 150px;
+        }
+        #gt-usr {
+            margin: 0px 260px;
+        }
+        #allUser {
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: darkslategrey;
+            width: 60%;
+            height: auto;
+            margin: 10px auto;
+            padding: 5px;
+            color: bisque;
+        }
+        #message {
+            text-align: center;
+        }
+    </style>
 
 </head>
 
 <body>
-    <h1>Signup Form</h1>
+    <div class="container">
+        <h1>Signup Form</h1>
 
 
-    <form onsubmit="signup(); return false ">
+        <form onsubmit="signup(); return false ">
 
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" required>
@@ -36,18 +87,19 @@
         <input type="password" id="repeatPassword" required>
         <br>
 
-        <input type="submit" value="Signup">
-    </form>
+        <input id="sgn-up" type="submit" value="Signup">
+        </form>
 
-    <p id="message"></p>
+        <p id="message"></p>
 
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <button onclick="getAllUser()">Get All users</button>
+        <button id="gt-usr" onclick="getAllUser()">Get All users</button>
 
-    <p id="allUser"></p>
+        <p id="allUser"></p>
+    </div>
 
 
     <script>
