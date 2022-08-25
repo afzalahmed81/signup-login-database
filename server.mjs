@@ -114,43 +114,43 @@ app.get("/users", async (req, res) => {
 
 //Login Database
 
-// app.post("/login", (req, res) => {
+app.post("/login", (req, res) => {
 
-//     userModel.findOne({ email: body.email, password: body.password }, (err, data) => {
+    userModel.findOne({ email: body.email, password: body.password }, (err, data) => {
 
 
-//         let body = req.body;
+        let body = req.body;
 
-//         if (!body.email || !body.password) {
-//             res.status(400).send(
-//                 `Required fields missing, Request example:
-//     {
-//         "email": "abc@abc.com",
-//         "password": "12345"
-//     }`
-//             );
-//             return;
-//         }
-//         if (userModel.email === body.email) {
-//             if (userModel.password === body.password) {
-//                 res.status(200).send({
-//                     firstName: userModel.firstName,
-//                     lastName: userModel.lastName,
-//                     email: userModel.email,
-//                     message: "login successful"
-//                 })
-//                 return;
+        if (!body.email || !body.password) {
+            res.status(400).send(
+                `Required fields missing, Request example:
+    {
+        "email": "abc@abc.com",
+        "password": "12345"
+    }`
+            );
+            return;
+        }
+        if (userModel.email === body.email) {
+            if (userModel.password === body.password) {
+                res.status(200).send({
+                    firstName: userModel.firstName,
+                    lastName: userModel.lastName,
+                    email: userModel.email,
+                    message: "login successful"
+                })
+                return;
 
-//             } else {
+            } else {
 
-//                 res.status(401).send({
-//                     message: "incorrect password"
-//                 })
-//                 return;
-//             }
-//         }
-//     });
-// });
+                res.status(401).send({
+                    message: "incorrect password"
+                })
+                return;
+            }
+        }
+    });
+});
 
 
 app.listen(port, () => {
